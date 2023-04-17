@@ -1,0 +1,19 @@
+.Body1 {
+
+
+
+}
+
+
+@media screen and (max-width: 992px) {
+  .Body1{
+    
+    
+  } }
+
+
+  @media screen and ( max-width: 600px) {
+    .Body1{
+  
+      
+    } }

@@ -1,0 +1,48 @@
+.cont{
+  background-color: DodgerBlue;
+}
+
+
+
+
+.h1{
+color:blue;
+
+
+}
+
+
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 800px;
+  margin: 50px auto;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+
+}
+
+th,
+td {
+
+  padding: 20px;
+ text-align: center;
+  border-bottom: 2px solid #ddd;
+  background-color:brown;
+}
+
+th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+
+}
+
+.hiden input{
+
+  width:100px;
+
+
+
+}
