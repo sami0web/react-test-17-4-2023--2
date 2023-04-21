@@ -16,18 +16,19 @@ function UsersRudx() {
     const response = await fetch('https://reqres.in/api/users/');
     const data = await response.json();
     dispatch({ type: 'Load', donnes: data.data });
+    
   };
 
 
+console.log( state)
  
-  const [inputValue, setInputValue] = useState({first_name:state.first_name,last_name:state.last_name,email:state.email});
+  const [inputValue, setInputValue] = useState({});
 
   const [isInputVisible, setIsInputVisible] = useState(false);
   const [isIndex, setisIndex] = useState();
 
 
-    console.log(Users)
-     console.log(state)
+  
     const handleInputChangefirst_name = (event) => {setInputValue({...inputValue,first_name:event.target.value});}
 
     const handleInputChangelast_name = (event) => {setInputValue({...inputValue,last_name:event.target.value});}
@@ -35,9 +36,18 @@ function UsersRudx() {
 
     const handleInputChangeEmail = (event) => {setInputValue({...inputValue,email:event.target.value});}
 
-    const Modif=(index) => { isInputVisible && dispatch({ type: 'Modif',first_name:inputValue.first_name, last_name:inputValue.last_name,email:inputValue.email }); setIsInputVisible(!isInputVisible) ;setisIndex(index) } 
 
-    const Supr=() => dispatch({ type: 'Supr'})
+    const Modif=(index) => { 
+      setInputValue(state[index]),
+     (index===isIndex)&& isInputVisible && dispatch({ type: 'Modif',first_name:inputValue.first_name, last_name:inputValue.last_name,email:inputValue.email, index:isIndex });
+
+      setIsInputVisible(!isInputVisible) ;
+
+     setisIndex(index) } 
+
+
+
+    const Supr=(index) => dispatch({ type: 'Supr',index:index})
 
 
     
@@ -88,12 +98,17 @@ function UsersRudx() {
               <td>{user.last_name}</td>
               <td>{user.email}</td>
               <td> <img  className="img prfl"src={user.avatar}alt="image de prfl" /></td>
-              <td><button onClick={() => Modif(index)}>Modif+{isIndex}</button></td>
-              <td> <button onClick={Supr}>Supr</button></td>
+
+              <td><button onClick={() => Modif(index)  }>Modif+{isIndex}</button></td>
+
+              <td> <button onClick={() => Supr(index)}>Supr</button></td>
             </tr>
  
   
-           {(isIndex==index)&&isInputVisible &&<tr  className='hiden'>
+           {(isIndex===index)&&isInputVisible &&<tr  className='hiden'>
+
+               
+
               <td>
               <input  type="text" id="input-text"  placeholder ='first name' 
                onChange={handleInputChangefirst_name} />  </td>

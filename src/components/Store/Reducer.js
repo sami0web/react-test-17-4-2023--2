@@ -14,11 +14,26 @@ function UserReducer(state, action) {
 
 
     case 'Modif':
-      return ({...state,first_name:action.first_name, last_name:action.last_name,email:action.email});
+
+    console.log("action.index"+action.index )
+    
+      return (state.map((user, index) => (
+
+        ( action.index=== index )?{...user,first_name:action.first_name,last_name:action.last_name,email:action.email }:user
+
+
+      )))
+
+
+
+     
 
       
-    case 'Supr':
-      return( {...state,first_name:' ', last_name:' ',email:' '});
+    case 'Supr': state.splice(action.index, 1)
+      return(state);
+
+
+
     default:
       return state;
   }
